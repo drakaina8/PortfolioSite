@@ -2,20 +2,30 @@ import React from 'react';
 import { createSlice } from '@reduxjs/toolkit';
 import PopUp from '../components/popup/popup';
 import type miniApp from '../types/miniApp';
+import { serialize } from '../utils/reactSerializer';
+
+interface AppReviver {
+    type: string;
+    props: {};
+
+}
 
 interface DesktopState {
-    items: Array<JSX.Element>;
+    items: Array<AppReviver>;
 }
 
 const initialState: DesktopState = {
     items: [
-        React.createElement(PopUp, {
-            titleText: 'Welcome to my portfolio!',
-            mainText:
+        {
+            type: "PopUp",
+            props: {
+                titleText: 'Welcome to my portfolio!',
+                mainText:
                 "My name is Hannah Hendrickson. If you're here, you already know that I'm a developer. Thanks for checking out my site!",
-            buttonOptions: ['Ok', 'Cancel'],
-        }),
-    ],
+                buttonOptions: ['Ok', 'Cancel'],
+            }
+        }
+    ]
 };
 
 export const desktopSlice = createSlice({
