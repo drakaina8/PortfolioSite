@@ -16,7 +16,7 @@ const initialState: menuState = {
             type: miniAppType.popup,
         } as miniApp,
     ],
-    menuVisible: true,
+    menuVisible: false,
 };
 
 export const menuSlice = createSlice({

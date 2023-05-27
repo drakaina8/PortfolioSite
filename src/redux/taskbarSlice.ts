@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import type miniApp from '../types/miniApp';
 
 interface TaskBarState {
@@ -13,17 +13,17 @@ export const taskbarSlice = createSlice({
     name: 'taskbar',
     initialState,
     reducers: {
-        addItem: (state, action) => {
+        addTaskbarItem: (state, action: PayloadAction<miniApp>) => {
             state.items.push(action.payload);
         },
-        removeItem: (state, action) => {
-            return [...state.items.filter((item) => item.id !== action.payload.id)];
+        removeTaskbarItem: (state, action: PayloadAction<miniApp>) => {
+            state.items = [...state.items.filter((item) => item.id !== action.payload.id)];
         },
-        clearItems: (state) => {
+        clearTaskbarItems: (state) => {
             state.items = [];
         },
     },
 });
 
-export const { addItem, removeItem, clearItems } = taskbarSlice.actions;
+export const { addTaskbarItem, removeTaskbarItem, clearTaskbarItems } = taskbarSlice.actions;
 export default taskbarSlice.reducer;
