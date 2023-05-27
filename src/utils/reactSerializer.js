@@ -82,10 +82,10 @@ function deserializeElement(element, options = {}, key) {
 
   switch(type) {
     case 'PopUp':
-      return React.createElement(PopUp, { ...props, key: {id} });
+      return React.createElement(PopUp, { ...props, key: id });
     case 'EmailForm':
-      return React.createElement(EmailForm, { ...props, key: {id} });
+      return React.createElement(EmailForm, { ...props, key: id });
   }
 
-  return React.createElement(new JSX.Element, { ...props, key: {props} });
+  return React.createElement(new JSX.Element, { ...props, key: id });
 }

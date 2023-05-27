@@ -21,7 +21,7 @@ const TaskbarItem = (props: taskbarItemProps): JSX.Element => {
         <button
             className="taskbar-item popup-img"
             id={item.id.toString()}
-            key={item.id.toString()}
+            key={"task-bar-" + item.id.toString()}
             onClick={handleClick}
         ></button>
     );
