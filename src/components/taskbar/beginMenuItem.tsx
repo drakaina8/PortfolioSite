@@ -5,7 +5,7 @@ import miniApp from '../../types/miniApp';
 import miniAppType from '../../types/miniAppTypeEnum';
 import PopUp from '../popup/popup';
 import EmailForm from '../email/emailForm';
-import { addItem } from '../../redux/desktopSlice';
+import { addDesktopItem } from '../../redux/desktopSlice';
 import { serialize } from '../../utils/reactSerializer';
 
 interface BeginMenuItemProps {
@@ -33,20 +33,21 @@ const BeginMenuItem = (props: BeginMenuItemProps): JSX.Element => {
         let newElement: JSX.Element;
         switch (item.type) {
             case miniAppType.popup:
-                dispatch(addItem(serialize('PopUp', {props:{
+                dispatch(addDesktopItem({type: 'PopUp', props:{
+                    id: item.id,
                     titleText:"About",
                     mainText:"This site was made using React, Redux Toolkit, and it was written in TypeScript! I though a desktop environment would be a fun and flexible way to demonstrate my abilities. Take a look around and maybe stay awhile!",
                     buttonOptions:[]
-        }})));
+        }}));
                 break;
-            case miniAppType.email:
-                newElement = <EmailForm />;
-                dispatch(addItem(serialize(EmailForm, newElement)));
-                break;
-            case miniAppType.game:
-                newElement = <></>;
-                dispatch(addItem(serialize(<></>,newElement)));
-                break;
+            // case miniAppType.email:
+            //     newElement = <EmailForm />;
+            //     dispatch(addDesktopItem({type: 'EmailForm', props: {}}));
+            //     break;
+            // case miniAppType.game:
+            //     newElement = <></>;
+            //     dispatch(addItem(serialize(<></>,newElement)));
+            //     break;
         }
         // dispatch(addItem(serialize(newElement)));
     };

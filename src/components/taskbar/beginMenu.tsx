@@ -9,7 +9,7 @@ const BeginMenu = (): JSX.Element => {
     return (
         <div id="beginmenu">
             {menuItems.map((item) => {
-                return <BeginMenuItem key={item.name} item={item} />;
+                return <BeginMenuItem key={"menu-item-" + item.id} item={item} />;
             })}
         </div>
     );

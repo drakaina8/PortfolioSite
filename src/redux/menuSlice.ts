@@ -10,7 +10,7 @@ interface menuState {
 const initialState: menuState = {
     menuItems: [
         {
-            id: -1,
+            id: Date.now(),
             name: 'About',
             iconURL: '../src/assets/application_xp.jpg',
             type: miniAppType.popup,

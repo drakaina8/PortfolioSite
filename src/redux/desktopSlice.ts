@@ -6,8 +6,7 @@ import { serialize } from '../utils/reactSerializer';
 import { popupProps } from '../components/popup/popup';
 
 interface AppReviver {
-    //id: number,
-    type: string;
+    type: 'PopUp' | 'EmailForm' | 'Game';
     props: popupProps
 
 }
@@ -39,7 +38,7 @@ export const desktopSlice = createSlice({
             state.items.push(action.payload);
         },
         removeDesktopItem: (state, action: PayloadAction<number>) => {
-            state.items = [...state.items.filter((item) => item.props.id != action.payload)];
+            state.items = [...state.items.filter(item => item.props.id !== action.payload)];
         },
         clearDesktopItems: (state) => {
             state.items = [];
