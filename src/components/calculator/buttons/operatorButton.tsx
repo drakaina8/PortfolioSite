@@ -1,15 +1,14 @@
-import React from "react";
-import { useAppSelector } from "../../../redux/hooks";
-import { useDispatch } from "react-redux";
-import { AppDispatch } from "../../../redux/store";
-import { clearCurrentNumber,addToCalcStack, popCalcStack } from "../../../redux/calculatorSlice";
+import React from 'react';
+import { useAppSelector } from '../../../redux/hooks';
+import { useDispatch } from 'react-redux';
+import { AppDispatch } from '../../../redux/store';
+import { clearCurrentNumber, addToCalcStack, popCalcStack } from '../../../redux/calculatorSlice';
 
 interface OperatorButtonProps {
-    value: string
+    value: string;
 }
 
 const OperatorButton = (props: OperatorButtonProps): JSX.Element => {
-
     let { value } = props;
 
     const dispatch: AppDispatch = useDispatch();
@@ -17,7 +16,6 @@ const OperatorButton = (props: OperatorButtonProps): JSX.Element => {
 
     function handleClick() {
         if (currentNumber !== 0) {
-            dispatch(addToCalcStack(currentNumber.toString()));
             dispatch(addToCalcStack(value));
             dispatch(clearCurrentNumber());
         } else {
@@ -28,11 +26,11 @@ const OperatorButton = (props: OperatorButtonProps): JSX.Element => {
         }
     }
 
-    return(
+    return (
         <button id={value} className="number calc-button" onClick={handleClick}>
             {value}
         </button>
-    )
-}
+    );
+};
 
 export default OperatorButton;
