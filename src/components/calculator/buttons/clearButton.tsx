@@ -22,8 +22,15 @@ const ClearButton = (props: ClearButtonProps): JSX.Element => {
         dispatch(setCalcStack([]))
     }
 
+    function handleDoubleClick() {
+
+    }
+
     return(
-        <button className="calc-number calc-button" onClick={handleClick}>
+        <button className="calc-number calc-button" 
+        onClick={handleClick}
+        onDoubleClick={handleDoubleClick}
+        >
             {value}
         </button>
 

@@ -6,13 +6,12 @@ import NegateButton from './buttons/negateButton';
 import NumberButton from './buttons/numberButton';
 import OperatorButton from './buttons/operatorButton';
 import PercentageButton from './buttons/percentageButton';
+import TickerTape from './tickerTape/tickerTape';
 
 const Calculator = (): JSX.Element => {
 
     const currentNumber = useAppSelector((state) => state.calculator.currentNumber);
     const calcStack = useAppSelector((state) => state.calculator.calcStack);
-
-
 
     const layout = [
         ['c', '-/+', '%', '/'],
@@ -41,6 +40,8 @@ const Calculator = (): JSX.Element => {
                 </div>)
             })}
             </div>
+
+            < TickerTape />
         </div>
     )
 }

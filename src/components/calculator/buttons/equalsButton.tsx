@@ -2,7 +2,8 @@ import React from "react";
 import { useAppSelector } from "../../../redux/hooks";
 import { AppDispatch } from "../../../redux/store";
 import { useDispatch } from "react-redux";
-import { addToCalcStack } from "../../../redux/calculatorSlice";
+import { addToCalcStack, setCalcStack, setCurrentNumber } from "../../../redux/calculatorSlice";
+import { calculate } from "../calcUtils";
 
 interface EqualsButtonProps {
     value: string
@@ -14,8 +15,14 @@ const EqualsButton = (props: EqualsButtonProps):JSX.Element => {
 
     const dispatch: AppDispatch = useDispatch();
 
+    let currentNumber = useAppSelector(state => state.calculator.currentNumber);
+    let calcStack = useAppSelector(state => state.calculator.calcStack);
+
     function handleClick() {
-        dispatch(addToCalcStack(value))
+        dispatch(addToCalcStack(currentNumber.toString()));
+        // dispatch(setCurrentNumber(calculate(calcStack)))
+        dispatch(addToCalcStack(value));
+        // dispatch(addToCalcStack(currentNumber.toString()));
     }
 
     return(
