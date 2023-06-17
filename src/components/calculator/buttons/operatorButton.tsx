@@ -14,8 +14,6 @@ const OperatorButton = (props: OperatorButtonProps): JSX.Element => {
 
     const dispatch: AppDispatch = useDispatch();
     let currentNumber = useAppSelector((state) => state.calculator.currentNumber);
-    let calcStack = useAppSelector((state) => state.calculator.calcStack);
-
 
     function handleClick() {
         if (currentNumber !== 0) {
@@ -23,6 +21,8 @@ const OperatorButton = (props: OperatorButtonProps): JSX.Element => {
             dispatch(addToCalcStack(value));
             dispatch(clearCurrentNumber());
         } else {
+            // If the last addition to the calcStack was another operator, we replace it with the newly selected one
+            // This mimics the functionality of the Windows calculator
             dispatch(popCalcStack());
             dispatch(addToCalcStack(value));
         }

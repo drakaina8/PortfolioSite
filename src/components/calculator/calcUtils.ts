@@ -1,24 +1,29 @@
 function calculate(expression: string[]): number {
 
-    let hasMultiply = expression.findIndex(item => item == "x")
-    let hasDivide = expression.findIndex(item => item == "/")
-    let hasAdd = expression.findIndex(item => item == "+")
-    let hasSubtract = expression.findIndex(item => item == "-")
+    let multiplicationIndex = expression.findIndex(item => item == "x")
+    let divisionIndex = expression.findIndex(item => item == "/")
+    let additionIndex = expression.findIndex(item => item == "+")
+    let substractionIndex = expression.findIndex(item => item == "-")
 
-    //let result: number = expression.length >= 1 ? expression.at(0)! : 0;
+    let operatorIndex = -1;
     let inProgress: string[] = [];
     let result;
 
-    if (hasMultiply >= 0) {
-        let product = (parseFloat(expression[hasMultiply -1]) * parseFloat(expression[hasMultiply +1])).toString();
-        inProgress = rebuildExpression(expression, hasMultiply, product);
-    } else if (hasDivide >= 0) {
-        
-    } else if (hasAdd >= 0) {
-
-    } else if (hasSubtract >= 0) {
-
+    if (multiplicationIndex >= 0) {
+        operatorIndex = multiplicationIndex;
+        result = (parseFloat(expression[multiplicationIndex -1]) * parseFloat(expression[multiplicationIndex +1])).toString();
+    } else if (divisionIndex >= 0) {
+        operatorIndex = divisionIndex;
+        result = (parseFloat(expression[divisionIndex -1]) / parseFloat(expression[divisionIndex +1])).toString();
+    } else if (additionIndex >= 0) {
+        operatorIndex = additionIndex;
+        result = (parseFloat(expression[additionIndex -1]) + parseFloat(expression[additionIndex +1])).toString();
+    } else if (substractionIndex >= 0) {
+        operatorIndex = substractionIndex;
+        result = (parseFloat(expression[substractionIndex -1]) - parseFloat(expression[substractionIndex +1])).toString();
     }
+    
+    inProgress = rebuildExpression(expression, operatorIndex, result);
 
     if (inProgress.length > 1) {
         result = calculate(inProgress);
@@ -34,7 +39,7 @@ function rebuildExpression(expression: string[], indexToReplace: number, newValu
 
     if (indexToReplace == 1) {
         inProgress.push(newValue);
-        inProgress.concat(expression.slice(indexToReplace -1, expression.length -1));
+        inProgress = inProgress.concat(expression.slice(indexToReplace + 2, expression.length -1));
     } else {
         inProgress = inProgress.concat(
             expression.slice(0, indexToReplace-2), 

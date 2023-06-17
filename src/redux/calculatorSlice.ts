@@ -35,7 +35,7 @@ export const calculatorSlice = createSlice({
             }
         },
         popCalcStack: (state, action: PayloadAction<void>) => {
-            state.calcStack.pop
+            state.calcStack.pop()
         },
         addToTickerTape: (state, action: PayloadAction<string>) => {
             state.tickerTapeLines.push(action.payload)

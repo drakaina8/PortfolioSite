@@ -6,7 +6,7 @@ import { addToCalcStack, setCalcStack, setCurrentNumber } from "../../../redux/c
 import { calculate } from "../calcUtils";
 
 interface EqualsButtonProps {
-    value: string
+    value: string // Should always be "="
 }
 
 const EqualsButton = (props: EqualsButtonProps):JSX.Element => {
@@ -19,10 +19,17 @@ const EqualsButton = (props: EqualsButtonProps):JSX.Element => {
     let calcStack = useAppSelector(state => state.calculator.calcStack);
 
     function handleClick() {
-        dispatch(addToCalcStack(currentNumber.toString()));
-        // dispatch(setCurrentNumber(calculate(calcStack)))
-        dispatch(addToCalcStack(value));
-        // dispatch(addToCalcStack(currentNumber.toString()));
+        // First, check that the last addition to the calcStack (not the equals sign) was an operator
+        // If it was, then we supply the last number entered (this mimics the functionality of the Windows calculator)
+        if (isNaN(parseFloat(calcStack[calcStack.length -1]))) {
+            dispatch(addToCalcStack(calcStack[calcStack.length -2]));
+            dispatch(addToCalcStack(value));
+        } else {
+            // These dispatches add the previously selected number and then an equals sign to the calcStack
+            // The addToCalcStack reducer has logic for completing the calculation
+            dispatch(addToCalcStack(currentNumber.toString()));
+            dispatch(addToCalcStack(value));
+        }
     }
 
     return(
