@@ -84,7 +84,7 @@ const PopUp = (props: popupProps): JSX.Element => {
                     {buttonOptions &&
                         buttonOptions.map((buttonText) => {
                             return (
-                                <button className="popup-button button-3d" key={buttonText} onClick={handleClick}>
+                                <button className="popup-button button-3d" key={buttonText + elementId} onClick={handleClick}>
                                     {buttonText}
                                 </button>
                             );
