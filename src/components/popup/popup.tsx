@@ -1,4 +1,4 @@
-import React, { ElementRef, MutableRefObject, ReactElement, useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import miniApp from '../../types/miniApp';
 import miniAppType from '../../types/miniAppTypeEnum';
 import taskbarSlice, { addTaskbarItem, removeTaskbarItem, clearTaskbarItems } from '../../redux/taskbarSlice';
@@ -7,7 +7,7 @@ import { useDispatch } from 'react-redux';
 import { removeDesktopItem } from '../../redux/desktopSlice';
 
 interface popupProps {
-    id: number,
+    id: number;
     titleText: string;
     mainText: string;
     buttonOptions: Array<string>;
@@ -23,7 +23,7 @@ const PopUp = (props: popupProps): JSX.Element => {
     const itemCurrent = {
         id: id,
         name: 'Welcome!',
-        iconURL: '../src/assets/application_xp.jpg',
+        faClasses: 'fa-regular fa-window-maximize',
         type: miniAppType.popup,
     } as miniApp;
 
@@ -63,6 +63,11 @@ const PopUp = (props: popupProps): JSX.Element => {
         popUp.style.top = `${y + movementY}px`;
     };
 
+    // const increaseZIndex = () => {
+    //     document.getElementById("APP" + elementId)!.style.zIndex =
+    //     (parseInt(document.getElementById("APP" + elementId)!.style.zIndex) +1).toString();
+    // }
+
     const handleClick = () => {
         const popUp = popUpRef.current;
         if (!popUp) return;
@@ -73,7 +78,14 @@ const PopUp = (props: popupProps): JSX.Element => {
 
     return (
         <div>
-            <div id={'APP' + elementId} className="popup" ref={popUpRef}>
+            <div 
+            id={'APP' + elementId} 
+            key={'APP' + elementId} 
+            className="popup" 
+            ref={popUpRef}
+            //onClick={increaseZIndex}
+            style={{zIndex: "1"}}
+            >
                 <div className="popup-header" onMouseDown={handleMouseDown}>
                     {titleText}
                 </div>
@@ -84,7 +96,11 @@ const PopUp = (props: popupProps): JSX.Element => {
                     {buttonOptions &&
                         buttonOptions.map((buttonText) => {
                             return (
-                                <button className="popup-button button-3d" key={buttonText + elementId} onClick={handleClick}>
+                                <button
+                                    className="popup-button button-3d"
+                                    key={buttonText + elementId}
+                                    onClick={handleClick}
+                                >
                                     {buttonText}
                                 </button>
                             );

@@ -30,7 +30,7 @@ const EqualsButton = (props: EqualsButtonProps): JSX.Element => {
     }
 
     return (
-        <button id={value} className="calc-button calc-right-bottom-corner" onClick={handleClick}>
+        <button id={value} className="calc-button right-bottom-corner" onClick={handleClick}>
             {value}
         </button>
     );

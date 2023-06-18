@@ -18,12 +18,16 @@ const TaskbarItem = (props: taskbarItemProps): JSX.Element => {
     };
 
     return (
-        <button
-            className="taskbar-item popup-img"
-            id={item.id.toString()}
-            key={"task-bar-" + item.id.toString()}
-            onClick={handleClick}
-        ></button>
+        <>
+            <button
+                className="taskbar-item"
+                id={item.id.toString()}
+                key={'task-bar-' + item.id.toString()}
+                onClick={handleClick}
+            >
+                <i className={item.faClasses + " taskbar-icon"}></i>
+            </button>
+        </>
     );
 };
 

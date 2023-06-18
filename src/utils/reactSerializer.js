@@ -1,6 +1,7 @@
 import React from "react"
 import PopUp, { popupProps } from "../components/popup/popup"
 import EmailForm from "../components/email/emailForm"
+import Calculator from "../components/calculator/calculator"
 
 /**
  * Serialize React element to JSON string
@@ -85,6 +86,8 @@ function deserializeElement(element, options = {}, key) {
       return React.createElement(PopUp, { ...props, key: id });
     case 'EmailForm':
       return React.createElement(EmailForm, { ...props, key: id });
+    case 'Calculator':
+      return React.createElement(Calculator, {...props, key: id});
   }
 
   return React.createElement(new JSX.Element, { ...props, key: id });

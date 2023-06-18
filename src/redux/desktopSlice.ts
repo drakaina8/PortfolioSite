@@ -1,14 +1,10 @@
-import React from 'react';
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import PopUp from '../components/popup/popup';
-import type miniApp from '../types/miniApp';
-import { serialize } from '../utils/reactSerializer';
 import { popupProps } from '../components/popup/popup';
+import { calculatorProps } from '../components/calculator/calculator';
 
 interface AppReviver {
-    type: 'PopUp' | 'EmailForm' | 'Game';
-    props: popupProps
-
+    type: 'PopUp' | 'EmailForm' | 'Game' | 'Calculator';
+    props: popupProps | calculatorProps;
 }
 
 interface DesktopState {
@@ -18,16 +14,16 @@ interface DesktopState {
 const initialState: DesktopState = {
     items: [
         {
-            type: "PopUp",
-            //id: Date.now(),
+            type: 'PopUp',
             props: {
                 id: Date.now(),
                 titleText: 'Welcome to my portfolio!',
-                mainText: "My name is Hannah Hendrickson. If you're here, you already know that I'm a developer. Thanks for checking out my site!",
+                mainText:
+                    "My name is Hannah Hendrickson. If you're here, you already know that I'm a developer. Thanks for checking out my site!",
                 buttonOptions: ['Ok', 'Cancel'],
-            }
-        }
-    ]
+            },
+        },
+    ],
 };
 
 export const desktopSlice = createSlice({
@@ -38,7 +34,7 @@ export const desktopSlice = createSlice({
             state.items.push(action.payload);
         },
         removeDesktopItem: (state, action: PayloadAction<number>) => {
-            state.items = [...state.items.filter(item => item.props.id !== action.payload)];
+            state.items = [...state.items.filter((item) => item.props.id !== action.payload)];
         },
         clearDesktopItems: (state) => {
             state.items = [];
@@ -46,6 +42,6 @@ export const desktopSlice = createSlice({
     },
 });
 
-export {AppReviver};
+export { AppReviver };
 export const { addDesktopItem, removeDesktopItem, clearDesktopItems } = desktopSlice.actions;
 export default desktopSlice.reducer;

@@ -3,7 +3,7 @@ import miniAppType from './miniAppTypeEnum';
 interface miniApp {
     id: number;
     name: string;
-    iconURL: string;
+    faClasses: string;
     type: miniAppType;
 }
 

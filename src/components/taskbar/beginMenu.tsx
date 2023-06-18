@@ -4,7 +4,7 @@ import miniApp from '../../types/miniApp';
 import BeginMenuItem from './beginMenuItem';
 
 const BeginMenu = (): JSX.Element => {
-    const menuItems = useAppSelector((state) => state.menu.menuItems) || [];
+    const menuItems = useAppSelector((state) => state.menu.menuItems);
 
     return (
         <div id="beginmenu">

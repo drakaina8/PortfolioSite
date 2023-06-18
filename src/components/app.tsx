@@ -13,7 +13,7 @@ const App = (): JSX.Element => {
 
     return (
         <>
-            < Calculator />
+            {/* < Calculator /> */}
             {desktopItems.map((item) => {
                 return deserialize(item);
             })}

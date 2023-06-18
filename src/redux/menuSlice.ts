@@ -10,13 +10,19 @@ interface menuState {
 const initialState: menuState = {
     menuItems: [
         {
-            id: Date.now(),
+            id: Date.now() - 200,
             name: 'About',
-            iconURL: '../src/assets/application_xp.jpg',
+            faClasses: "fa-solid fa-question",
             type: miniAppType.popup,
-        } as miniApp,
+        },
+        {
+            id: Date.now(),
+            name: 'Calculator',
+            faClasses: "fa-solid fa-calculator",
+            type: miniAppType.calculator
+        }
     ],
-    menuVisible: false,
+    menuVisible: true,
 };
 
 export const menuSlice = createSlice({
