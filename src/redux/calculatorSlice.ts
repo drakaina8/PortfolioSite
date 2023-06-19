@@ -3,13 +3,13 @@ import TickerTape from '../components/calculator/tickerTape/tickerTape';
 import { calculate } from '../components/calculator/calcUtils';
 
 interface CalculatorState {
-    currentNumber: number;
+    currentNumber: string;
     calcStack: string[];
     tickerTapeLines: string[];
 }
 
 const initialState: CalculatorState = {
-    currentNumber: 0,
+    currentNumber: "0",
     calcStack: [],
     tickerTapeLines: [],
 };
@@ -18,11 +18,11 @@ export const calculatorSlice = createSlice({
     name: 'desktop',
     initialState,
     reducers: {
-        setCurrentNumber: (state, action: PayloadAction<number>) => {
+        setCurrentNumber: (state, action: PayloadAction<string>) => {
             state.currentNumber = action.payload;
         },
         clearCurrentNumber: (state) => {
-            state.currentNumber = 0;
+            state.currentNumber = "0";
         },
         setCalcStack: (state, action: PayloadAction<[]>) => {
             state.calcStack = action.payload;

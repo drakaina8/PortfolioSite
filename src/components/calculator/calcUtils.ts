@@ -1,4 +1,4 @@
-function calculate(expression: string[]): number {
+function calculate(expression: string[]): string {
     let multiplicationIndex = expression.findIndex((item) => item == 'x');
     let divisionIndex = expression.findIndex((item) => item == '/');
     let additionIndex = expression.findIndex((item) => item == '+');
@@ -6,7 +6,7 @@ function calculate(expression: string[]): number {
 
     let operatorIndex = -1;
     let inProgress: string[] = [];
-    let result;
+    let result: string = "";
 
     if (multiplicationIndex >= 0) {
         operatorIndex = multiplicationIndex;
@@ -51,7 +51,7 @@ function rebuildExpression(expression: string[], operatorIndex: number, newValue
             expression.slice(operatorIndex + 2, expression.length),
         ) as string[];
     }
-    console.log(inProgress);
+    
     return inProgress;
 }
 

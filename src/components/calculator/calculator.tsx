@@ -10,7 +10,6 @@ import TickerTape from './tickerTape/tickerTape';
 
 const Calculator = (): JSX.Element => {
     const currentNumber = useAppSelector((state) => state.calculator.currentNumber);
-    const calcStack = useAppSelector((state) => state.calculator.calcStack);
 
     const layout = [
         ['c', '-/+', '%', '/'],
@@ -20,9 +19,24 @@ const Calculator = (): JSX.Element => {
         ['0', '.', '='],
     ];
 
+    // Takes into consideration numbers with too many digits to fit on the screen
+    // Also displays friendlier error messages 
+    function formatDisplay(currentNumber: string): string {
+        let formattedNum: string = currentNumber.toString();
+        if (currentNumber.toString().length > 9) {
+            formattedNum = parseFloat(currentNumber).toExponential(4);
+        }
+
+        if (formattedNum == Infinity.toString()) {
+            return "Overflow";
+        }
+
+        return formattedNum;
+    }
+
     return (
         <div id="calculator">
-            <div id="calc-display">{currentNumber}</div>
+            <div id="calc-display">{formatDisplay(currentNumber)}</div>
             <div id="calc-buttons">
                 {layout.map((row) => {
                     return (

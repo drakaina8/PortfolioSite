@@ -17,15 +17,15 @@ const NumberButton = (props: NumberButtonProps): JSX.Element => {
     function handleClick() {
         // Multiple decimal points cannot exist in a number
         if (value == '.' && currentNumber.toString().includes('.')) {
-            throw new Error();
-        } else if (currentNumber == 0) {
+            
+        } else if (currentNumber == "0") {
             // If the currentNumber is 0, we do not need to worry about concatenating it
-            dispatch(setCurrentNumber(parseFloat(value)));
+            dispatch(setCurrentNumber(value));
             dispatch(addToCalcStack(value));
         } else {
             // If the currentNumber is being added to, we continually update the last index of the calcStack
             let concatCurrentNumber = currentNumber.toString() + value;
-            dispatch(setCurrentNumber(parseFloat(concatCurrentNumber)));
+            dispatch(setCurrentNumber(concatCurrentNumber));
             dispatch(popCalcStack());
             dispatch(addToCalcStack(concatCurrentNumber));
         }
