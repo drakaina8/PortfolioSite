@@ -86,7 +86,7 @@ const PopUp = (props: popupProps): JSX.Element => {
             //onClick={increaseZIndex}
             style={{zIndex: "1"}}
             >
-                <div className="popup-header" onMouseDown={handleMouseDown}>
+                <div className="window-titlebar" onMouseDown={handleMouseDown}>
                     {titleText}
                 </div>
 

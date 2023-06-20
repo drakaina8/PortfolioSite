@@ -41,6 +41,16 @@ const BeginMenuItem = (props: BeginMenuItemProps): JSX.Element => {
                     }),
                 );
                 break;
+            case miniAppType.settings:
+                dispatch(
+                    addDesktopItem({
+                        type: 'Settings',
+                        props: {
+                            id: Date.now(),
+                        }
+                    })
+                )
+                break;
         }
     };
 

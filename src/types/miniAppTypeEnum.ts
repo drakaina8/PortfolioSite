@@ -2,7 +2,8 @@ enum miniAppType {
     popup,
     email,
     game,
-    calculator
+    calculator,
+    settings
 }
 
 export default miniAppType;
