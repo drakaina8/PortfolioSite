@@ -1,6 +1,7 @@
 :root {
     --backgroundURL: url('defaultBackground.jpg')  no-repeat center center fixed;
     --primaryBackground: #b9c3c0;
+    --text: #000;
     --accent: #3e564a;
     --titleBar: #000080;
     --buttonHighlight: #e8e8e8;
@@ -14,9 +15,10 @@
    */
 [data-theme="orchid"] {
     --backgroundURL: url('orchid.jpg')  no-repeat center center fixed;
-    --primaryBackground: #ffffff00;
-    --accent: #3e564a;
-    --titleBar: #000080;
+    --primaryBackground: #2a2121d2;
+    --text: #fff;
+    --accent: #809e8f;
+    --titleBar: #3a5e4c;
     --buttonHighlight: #e8e8e8;
     --buttonShadow: #828282;
     --secondaryAccent: #9a8369;
@@ -24,6 +26,7 @@
 
 html,
 body {
+    color: var(--text);
     margin: 0;
     padding: 0;
     font-family: Arial, Helvetica, sans-serif;
@@ -63,7 +66,7 @@ html {
 .window-titlebar {
     height: 30px;
     background: var(--titleBar);
-    color: white;
+    color: var(--text);
     margin: 2px;
     padding-left: 6px;
     font-weight: bolder;
@@ -84,6 +87,7 @@ html {
 }
 
 .popup-button {
+    color: var(--text);
     border: 1px solid black;
     min-height: 25px;
     min-width: 60px;
@@ -179,6 +183,7 @@ html {
 }
 
 .menu-item-button {
+    color: var(--accent);
     font-size: larger;
     width: 100%;
     text-align: left;
@@ -194,6 +199,7 @@ html {
 }
 
 .menu-item-text {
+    color: var(--text);
     font-family: Arial, Helvetica, sans-serif;    
     font-size: large;
     font-weight: bold;
@@ -223,7 +229,7 @@ html {
     justify-content: center;
     align-items: flex-end;
     text-align: right;
-    color: black;
+    color: var(--text);
     overflow: hidden;
 }
 
@@ -251,7 +257,7 @@ html {
 }
 
 .calc-button:hover {
-    color: #ffffff;
+    color: var(--accent);
     cursor: pointer;
 }
 
