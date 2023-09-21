@@ -3,11 +3,13 @@ import { combineReducers } from '@reduxjs/toolkit';
 import taskBarReducer from './taskbarSlice';
 import menuReducer from './menuSlice';
 import desktopReducer from './desktopSlice';
+import calculatorReducer from './calculatorSlice';
 
 const rootReducer = combineReducers({
     taskBar: taskBarReducer,
     menu: menuReducer,
     desktop: desktopReducer,
+    calculator: calculatorReducer
 });
 
 const store = configureStore({

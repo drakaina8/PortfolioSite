@@ -152,14 +152,14 @@ html {
 #calculator {
     background: linear-gradient(180deg, #565454 0%, #000000 100%);
     border-radius: 20px;
-    border: 1px solid #BABABA;
+    border: 1px solid #bababa;
     width: 400px;
     height: 620px;
     margin: 40px;
 }
 
 #calc-display {
-    background: #C699FF;
+    background: #c699ff;
     border-radius: 20px 20px 0px 0px;
     height: 120px;
     width: inherit;
@@ -171,11 +171,10 @@ html {
     justify-content: center;
     align-items: flex-end;
     text-align: right;
-    color: #3C2482;
+    color: #3c2482;
 }
 
 #calc-buttons {
-    
 }
 
 .button-row {
@@ -190,8 +189,8 @@ html {
     font-family: monospace;
     height: 100px;
     background: none;
-    color: #C699FF;
-    border: 1px solid #BABABA;
+    color: #c699ff;
+    border: 1px solid #bababa;
     font-weight: 700;
     font-size: 48px;
     margin: 0px;
@@ -199,13 +198,12 @@ html {
 }
 
 .calc-button:hover {
-    color: #FFFFFF;
+    color: #ffffff;
     cursor: pointer;
 }
 
 .calc-number {
-
-} 
+}
 
 .double-width {
     flex-basis: 50%;
@@ -218,4 +216,3 @@ html {
 .right-bottom-corner {
     border-radius: 0px 0px 20px 0px;
 }
-
