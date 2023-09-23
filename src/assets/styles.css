@@ -4,6 +4,7 @@
     --text: #000;
     --accent: #3e564a;
     --titleBar: #000080;
+    --titleBarText: #fff;
     --buttonHighlight: #e8e8e8;
     --buttonShadow: #828282;
     --secondaryAccent: #9a8369;
@@ -19,6 +20,7 @@
     --text: #fff;
     --accent: #809e8f;
     --titleBar: #3a5e4c;
+    --titleBarText: #fff;
     --buttonHighlight: #e8e8e8;
     --buttonShadow: #828282;
     --secondaryAccent: #9a8369;
@@ -66,7 +68,7 @@ html {
 .window-titlebar {
     height: 30px;
     background: var(--titleBar);
-    color: var(--text);
+    color: var(--titleBarText);
     margin: 2px;
     padding-left: 6px;
     font-weight: bolder;

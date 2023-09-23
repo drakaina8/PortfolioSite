@@ -57,7 +57,7 @@ const Settings = (props: settingsProps): JSX.Element => {
             <div className="window-titlebar" onMouseDown={handleMouseDown}>
                 Theme Settings
             </div>
-            Choose a theme for the site:
+            <p className="">Choose a theme for the site:</p>
             <form>
                 <div>
                     <input
@@ -65,7 +65,7 @@ const Settings = (props: settingsProps): JSX.Element => {
                         type="radio"
                         name="Default"
                         value="default-theme"
-                        checked={document.cookie == 'default-theme'}
+                        checked={document.cookie == 'theme=default-theme'}
                         onChange={(e) => setThemeAndCookie(e.currentTarget.defaultValue)}
                     />
                     <label htmlFor="default-theme">Default</label>
@@ -75,7 +75,7 @@ const Settings = (props: settingsProps): JSX.Element => {
                         type="radio"
                         name="Orchid"
                         value="orchid"
-                        checked={document.cookie == 'aquarium'}
+                        checked={document.cookie == 'theme=orchid'}
                         onChange={(e) => setThemeAndCookie(e.currentTarget.defaultValue)}
                     />
                     <label htmlFor="orchid">Orchid</label>
