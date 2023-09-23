@@ -4,6 +4,11 @@ import EmailForm from "../components/email/emailForm"
 import Calculator from "../components/calculator/calculator"
 import Settings from "../components/settings/settings"
 
+type Options = {
+  components,
+  reviver
+}
+
 /**
  * Serialize React element to JSON string
  *
@@ -35,7 +40,7 @@ export function serialize(type, element) {
  * @param {function?} options.reviver
  * @returns {ReactNode}
  */
-export function deserialize(data, options = {}) {
+export function deserialize(data, options: Options= {components: "", reviver: ""}) {
   // if (typeof data === "string") {
   //   data = JSON.parse(data)
   // }
@@ -45,12 +50,12 @@ export function deserialize(data, options = {}) {
 
   }
   if (data instanceof Object) {
-    return deserializeElement(data, options)
+    return deserializeElement(data, options, "testKEy")
   }
   throw new Error("Deserialization error: incorrect data type")
 }
 
-function deserializeElement(element, options = {}, key) {
+function deserializeElement(element, options: Options, key) {
   let { components = {}, reviver } = options
 
   if (typeof element !== "object") {
@@ -62,7 +67,7 @@ function deserializeElement(element, options = {}, key) {
   }
 
   if (element instanceof Array) {
-    return element.map((el, i) => deserializeElement(el, options, i))
+    return element.map((el, key) => deserializeElement(el, options, key))
   }
 
   // Now element has following shape { type: string, props: object }
@@ -75,7 +80,7 @@ function deserializeElement(element, options = {}, key) {
   }
 
   if (props.children) {
-    props = { ...props, children: deserializeElement(props.children, options) }
+    props = { ...props, children: deserializeElement(props.children, options, "testKey") }
   }
 
   if (reviver) {
@@ -93,5 +98,5 @@ function deserializeElement(element, options = {}, key) {
       return React.createElement(Settings, {...props, key: id});
   }
 
-  return React.createElement(new JSX.Element, { ...props, key: id });
+  return React.createElement('div', { ...props, key: id });
 }
