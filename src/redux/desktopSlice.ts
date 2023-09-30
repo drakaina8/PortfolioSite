@@ -1,11 +1,11 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { popupProps } from '../components/popup/popup';
+import { PopupProps } from '../components/popup/popup';
 import { calculatorProps } from '../components/calculator/calculator';
-import { settingsProps } from '../components/settings/settings';
+import { SettingsProps } from '../components/settings/settings';
 
 interface AppReviver {
     type: 'PopUp' | 'EmailForm' | 'Game' | 'Calculator' | 'Settings';
-    props: popupProps | calculatorProps | settingsProps;
+    props: PopupProps | calculatorProps | settingsProps;
 }
 
 interface DesktopState {

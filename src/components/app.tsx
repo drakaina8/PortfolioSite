@@ -5,7 +5,7 @@ import Taskbar from './taskbar/taskbar';
 import BeginMenu from './taskbar/beginMenu';
 
 const App = (): JSX.Element => {
-    const theme = useAppSelector(state => state.general.theme)
+    const theme = useAppSelector((state) => state.general.theme);
     const desktopItems = useAppSelector((state) => state.desktop.items);
     const menuVisible = useAppSelector((state) => state.menu.menuVisible);
 
@@ -16,7 +16,6 @@ const App = (): JSX.Element => {
             })}
             <Taskbar />
             {menuVisible ? <BeginMenu /> : <></>}
-
         </div>
     );
 };

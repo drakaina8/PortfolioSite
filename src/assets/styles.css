@@ -1,5 +1,5 @@
 :root {
-    --backgroundURL: url('defaultBackground.jpg')  no-repeat center center fixed;
+    --backgroundURL: url('defaultBackground.jpg') no-repeat center center fixed;
     --primaryBackground: #b9c3c0;
     --text: #000;
     --accent: #3e564a;
@@ -14,8 +14,8 @@
 /* https://unsplash.com/photos/91JJf3wX6xs */
 /* Photo by <a href="https://unsplash.com/it/@hlandkammer?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Holly Landkammer</a> on <a href="https://unsplash.com/photos/cVHQ-dbYtcM?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
    */
-[data-theme="orchid"] {
-    --backgroundURL: url('orchid.jpg')  no-repeat center center fixed;
+[data-theme='orchid'] {
+    --backgroundURL: url('orchid.jpg') no-repeat center center fixed;
     --primaryBackground: #2a2121d2;
     --text: #fff;
     --accent: #809e8f;
@@ -113,7 +113,7 @@ html {
 #taskbar {
     /* Other classes have their z-indexes programmatically changed as their relevant components 
     are clicked. This ensures that it is very unlikely the taskbar will ever be underneith another component */
-    z-index: 9999999; 
+    z-index: 9999999;
     position: fixed;
     display: flex;
     flex-direction: row;
@@ -202,7 +202,7 @@ html {
 
 .menu-item-text {
     color: var(--text);
-    font-family: Arial, Helvetica, sans-serif;    
+    font-family: Arial, Helvetica, sans-serif;
     font-size: large;
     font-weight: bold;
     margin-left: 5px;
@@ -273,4 +273,8 @@ html {
 
 .right-bottom-corner {
     border-radius: 0px 0px 20px 0px;
+}
+
+.pl-5 {
+    padding-left: 5px;
 }

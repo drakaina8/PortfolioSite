@@ -2,12 +2,12 @@ import React, { useEffect, useState, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import { setTheme } from '../../redux/generalSlice';
 
-interface settingsProps {
+interface SettingsProps {
     id: number;
 }
 
-const Settings = (props: settingsProps): JSX.Element => {
-    const [elementId, setElementId] = useState<number>(-1);
+const Settings = (): JSX.Element => {
+    //const [elementId, setElementId] = useState<number>(-1);
 
     const dispatch = useDispatch();
     const elementRef = useRef<HTMLDivElement | null>(null);
@@ -57,7 +57,7 @@ const Settings = (props: settingsProps): JSX.Element => {
             <div className="window-titlebar" onMouseDown={handleMouseDown}>
                 Theme Settings
             </div>
-            <p className="">Choose a theme for the site:</p>
+            <p className="pl-5">Choose a theme for the site:</p>
             <form>
                 <div>
                     <input
@@ -85,5 +85,5 @@ const Settings = (props: settingsProps): JSX.Element => {
     );
 };
 
-export { settingsProps };
+export { SettingsProps };
 export default Settings;

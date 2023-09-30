@@ -1,20 +1,19 @@
 import React, { useEffect, useRef, useState } from 'react';
 import miniApp from '../../types/miniApp';
 import miniAppType from '../../types/miniAppTypeEnum';
-import taskbarSlice, { addTaskbarItem, removeTaskbarItem, clearTaskbarItems } from '../../redux/taskbarSlice';
-import store from '../../redux/store';
+import { addTaskbarItem, removeTaskbarItem } from '../../redux/taskbarSlice';
 import { useDispatch } from 'react-redux';
 import { removeDesktopItem } from '../../redux/desktopSlice';
 
-interface popupProps {
+interface PopupProps {
     id: number;
     titleText: string;
     mainText: string;
     buttonOptions: Array<string>;
 }
 
-const PopUp = (props: popupProps): JSX.Element => {
-    let { id, titleText, mainText, buttonOptions } = props;
+const PopUp = (props: PopupProps): JSX.Element => {
+    const { id, titleText, mainText, buttonOptions } = props;
     const [elementId, setElementId] = useState<number>(-1);
 
     const dispatch = useDispatch();
@@ -63,11 +62,6 @@ const PopUp = (props: popupProps): JSX.Element => {
         popUp.style.top = `${y + movementY}px`;
     };
 
-    // const increaseZIndex = () => {
-    //     document.getElementById("APP" + elementId)!.style.zIndex =
-    //     (parseInt(document.getElementById("APP" + elementId)!.style.zIndex) +1).toString();
-    // }
-
     const handleClick = () => {
         const popUp = popUpRef.current;
         if (!popUp) return;
@@ -78,13 +72,13 @@ const PopUp = (props: popupProps): JSX.Element => {
 
     return (
         <div>
-            <div 
-            id={'APP' + elementId} 
-            key={'APP' + elementId} 
-            className="popup" 
-            ref={popUpRef}
-            //onClick={increaseZIndex}
-            style={{zIndex: "1"}}
+            <div
+                id={'APP' + elementId}
+                key={'APP' + elementId}
+                className="popup"
+                ref={popUpRef}
+                //onClick={increaseZIndex}
+                style={{ zIndex: '1' }}
             >
                 <div className="window-titlebar" onMouseDown={handleMouseDown}>
                     {titleText}
@@ -111,5 +105,5 @@ const PopUp = (props: popupProps): JSX.Element => {
     );
 };
 
-export { popupProps };
+export { PopupProps };
 export default PopUp;
