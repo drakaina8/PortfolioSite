@@ -1,0 +1,280 @@
+:root {
+    --backgroundURL: url('defaultBackground.jpg') no-repeat center center fixed;
+    --primaryBackground: #b9c3c0;
+    --text: #000;
+    --accent: #3e564a;
+    --titleBar: #000080;
+    --titleBarText: #fff;
+    --buttonHighlight: #e8e8e8;
+    --buttonShadow: #828282;
+    --secondaryAccent: #9a8369;
+}
+
+/* Background resource: https://unsplash.com/photos/MYadhrkenNg */
+/* https://unsplash.com/photos/91JJf3wX6xs */
+/* Photo by <a href="https://unsplash.com/it/@hlandkammer?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Holly Landkammer</a> on <a href="https://unsplash.com/photos/cVHQ-dbYtcM?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+   */
+[data-theme='orchid'] {
+    --backgroundURL: url('orchid.jpg') no-repeat center center fixed;
+    --primaryBackground: #2a2121d2;
+    --text: #fff;
+    --accent: #809e8f;
+    --titleBar: #3a5e4c;
+    --titleBarText: #fff;
+    --buttonHighlight: #e8e8e8;
+    --buttonShadow: #828282;
+    --secondaryAccent: #9a8369;
+}
+
+html,
+body {
+    color: var(--text);
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+html {
+    background: var(--backgroundURL);
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+/* .theme-root {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    background: var(--backgroundURL) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    
+} */
+
+.popup {
+    z-index: 1;
+    position: fixed;
+    top: 16px;
+    left: 16px;
+    height: fit-content;
+    width: 400px;
+    border: 1px solid black;
+    background: var(--primaryBackground);
+}
+
+.window-titlebar {
+    height: 30px;
+    background: var(--titleBar);
+    color: var(--titleBarText);
+    margin: 2px;
+    padding-left: 6px;
+    font-weight: bolder;
+    font-size: larger;
+    line-height: 1.5;
+    cursor: grab;
+}
+
+.popup-maintext {
+    padding: 25px;
+}
+
+.popup-buttonset {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding: 0px 25px 25px 25px;
+}
+
+.popup-button {
+    color: var(--text);
+    border: 1px solid black;
+    min-height: 25px;
+    min-width: 60px;
+    background: var(--primaryBackground);
+}
+
+.button-3d {
+    border-top: 2px solid white;
+    border-left: 2px solid white;
+    border-right: 2px solid var(--buttonShadow);
+    border-bottom: 2px solid var(--buttonShadow);
+}
+
+.button-3d:focus {
+    border-top: 2px solid var(--buttonShadow);
+    border-left: 2px solid var(--buttonShadow);
+    border-right: 2px solid white;
+    border-bottom: 2px solid white;
+}
+
+#taskbar {
+    /* Other classes have their z-indexes programmatically changed as their relevant components 
+    are clicked. This ensures that it is very unlikely the taskbar will ever be underneith another component */
+    z-index: 9999999;
+    position: fixed;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    height: 48px;
+    width: 100%;
+    background-color: var(--primaryBackground);
+    border-top: 3px solid var(--buttonHighlight);
+    bottom: 0;
+}
+
+.taskbar-icon {
+    font-size: xx-large;
+    color: var(--accent);
+}
+
+#taskbar-beginbutton {
+    height: 44px;
+    width: fit-content;
+    background-color: var(--primaryBackground);
+    font-size: xx-large;
+    margin-left: 2px;
+    margin-top: 2px;
+    padding-right: 4px;
+}
+
+#beginbutton-text {
+    background: -webkit-linear-gradient(var(--secondaryAccent), var(--accent));
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+#beginmenu {
+    position: fixed;
+    bottom: 51px;
+    left: 0;
+    z-index: 1;
+    height: fit-content;
+    width: 200px;
+    background-color: var(--primaryBackground);
+    border: 1px solid white;
+    border-bottom: 1px solid var(--buttonShadow);
+
+    overflow: visible;
+}
+
+.taskbar-item {
+    z-index: 99;
+    background-color: var(--primaryBackground);
+    margin: 4px;
+}
+
+.menu-item {
+    height: fit-content;
+    display: flex;
+    flex-direction: row;
+}
+
+.menu-item-label {
+    margin-left: 3px;
+    font-size: larger;
+    line-height: 1.75;
+    color: var(--accent);
+}
+
+.menu-item {
+    margin: 5px;
+}
+
+.menu-item-button {
+    color: var(--accent);
+    font-size: larger;
+    width: 100%;
+    text-align: left;
+    border: none;
+    background: transparent;
+}
+
+.menu-item-button:hover {
+    cursor: pointer;
+    box-shadow: inset 0px -10px 8px -12px var(--buttonShadow);
+    border-bottom: 1px solid var(--buttonShadow);
+    padding-bottom: 3px;
+}
+
+.menu-item-text {
+    color: var(--text);
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: large;
+    font-weight: bold;
+    margin-left: 5px;
+}
+
+.calculator {
+    z-index: 1;
+    position: fixed;
+    border-radius: 20px;
+    border: 1px solid black;
+    width: 400px;
+    height: 620px;
+    background: var(--primaryBackground);
+}
+
+#calc-display {
+    background: var(--primaryBackground);
+    border-radius: 20px 20px 0px 0px;
+    height: 120px;
+    width: inherit;
+    font-weight: 400;
+    font-size: 72px;
+    line-height: 95px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+    text-align: right;
+    color: var(--text);
+    overflow: hidden;
+}
+
+.calc-display-text {
+    padding-right: 10px;
+}
+
+.button-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: left;
+    flex-wrap: nowrap;
+}
+
+.calc-button {
+    font-family: monospace;
+    height: 100px;
+    background: none;
+    color: var(--secondaryAccent);
+    font-weight: 700;
+    font-size: 48px;
+    margin: 0px;
+    flex-basis: 25%;
+}
+
+.calc-button:hover {
+    color: var(--accent);
+    cursor: pointer;
+}
+
+.double-width {
+    flex-basis: 50%;
+}
+
+.left-bottom-corner {
+    border-radius: 0px 0px 0px 20px;
+}
+
+.right-bottom-corner {
+    border-radius: 0px 0px 20px 0px;
+}
+
+.pl-5 {
+    padding-left: 5px;
+}

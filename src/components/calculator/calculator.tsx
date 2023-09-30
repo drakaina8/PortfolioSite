@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useAppSelector } from '../../redux/hooks';
 import ClearButton from './buttons/clearButton';
 import EqualsButton from './buttons/equalsButton';
@@ -7,10 +7,82 @@ import NumberButton from './buttons/numberButton';
 import OperatorButton from './buttons/operatorButton';
 import PercentageButton from './buttons/percentageButton';
 import TickerTape from './tickerTape/tickerTape';
+import { useDispatch } from 'react-redux';
+import { removeDesktopItem } from '../../redux/desktopSlice';
+import miniApp from '../../types/miniApp';
+import miniAppType from '../../types/miniAppTypeEnum';
+import taskbarSlice, { addTaskbarItem, removeTaskbarItem, clearTaskbarItems } from '../../redux/taskbarSlice';
 
-const Calculator = (): JSX.Element => {
+
+interface calculatorProps {
+    id: number;
+}
+
+const Calculator = (props: calculatorProps): JSX.Element => {
+    let { id } = props;
+
+    const [elementId, setElementId] = useState<number>(-1);
     const currentNumber = useAppSelector((state) => state.calculator.currentNumber);
     const calcStack = useAppSelector((state) => state.calculator.calcStack);
+
+    const dispatch = useDispatch();
+    const calcRef = useRef<HTMLDivElement | null>(null);
+    const [mouseDown, setMouseDown] = useState<boolean>(false);
+    const itemCurrent = {
+        id: id,
+        name: 'Calculator',
+        faClasses: "fa-solid fa-calculator",
+        type: miniAppType.calculator
+    } as miniApp;
+
+    useEffect(() => {
+        dispatch(addTaskbarItem(itemCurrent));
+        setElementId(itemCurrent.id);
+        const handleMouseUp = () => setMouseDown(false);
+
+        window.addEventListener('mouseup', handleMouseUp);
+
+        return () => {
+            window.addEventListener('mouseup', handleMouseUp);
+        };
+    }, []);
+
+    useEffect(() => {
+        const handleMouseMove = (e) => handleDrag(e.movementX, e.movementY);
+
+        if (mouseDown) {
+            window.addEventListener('mousemove', handleMouseMove);
+        }
+
+        return () => {
+            window.removeEventListener('mousemove', handleMouseMove);
+        };
+    }, [mouseDown]);
+
+    const handleMouseDown = () => setMouseDown(true);
+
+    const handleDrag = (movementX, movementY) => {
+        const calculator = calcRef.current;
+        if (!calculator) return;
+
+        const { x, y } = calculator.getBoundingClientRect();
+
+        calculator.style.left = `${x + movementX}px`;
+        calculator.style.top = `${y + movementY}px`;
+    };
+
+    // const increaseZIndex = () => {
+    //     document.getElementById("APP" + elementId)!.style.zIndex =
+    //     (parseInt(document.getElementById("APP" + elementId)!.style.zIndex) +1).toString();
+    // }
+
+    const handleClick = () => {
+        const calculator = calcRef.current;
+        if (!calculator) return;
+        dispatch(removeDesktopItem(itemCurrent.id));
+        dispatch(removeTaskbarItem(itemCurrent));
+        calculator.remove();
+    };
 
     const layout = [
         ['c', '-/+', '%', '/'],
@@ -21,8 +93,16 @@ const Calculator = (): JSX.Element => {
     ];
 
     return (
-        <div id="calculator">
-            <div id="calc-display">{currentNumber}</div>
+        <div id={"APP" + elementId} 
+        key={"APP" + elementId} 
+        className='calculator' 
+        ref={calcRef}
+        //onClick={increaseZIndex}
+        style={{zIndex: "1"}}
+        >
+            <div id="calc-display" onMouseDown={handleMouseDown}>
+                <span className="calc-display-text">{currentNumber}</span>
+                </div>
             <div id="calc-buttons">
                 {layout.map((row) => {
                     return (
@@ -54,4 +134,5 @@ const Calculator = (): JSX.Element => {
     );
 };
 
+export { calculatorProps };
 export default Calculator;

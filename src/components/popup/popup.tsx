@@ -1,20 +1,19 @@
-import React, { ElementRef, MutableRefObject, ReactElement, useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import miniApp from '../../types/miniApp';
 import miniAppType from '../../types/miniAppTypeEnum';
-import taskbarSlice, { addTaskbarItem, removeTaskbarItem, clearTaskbarItems } from '../../redux/taskbarSlice';
-import store from '../../redux/store';
+import { addTaskbarItem, removeTaskbarItem } from '../../redux/taskbarSlice';
 import { useDispatch } from 'react-redux';
 import { removeDesktopItem } from '../../redux/desktopSlice';
 
-interface popupProps {
-    id: number,
+interface PopupProps {
+    id: number;
     titleText: string;
     mainText: string;
     buttonOptions: Array<string>;
 }
 
-const PopUp = (props: popupProps): JSX.Element => {
-    let { id, titleText, mainText, buttonOptions } = props;
+const PopUp = (props: PopupProps): JSX.Element => {
+    const { id, titleText, mainText, buttonOptions } = props;
     const [elementId, setElementId] = useState<number>(-1);
 
     const dispatch = useDispatch();
@@ -23,7 +22,7 @@ const PopUp = (props: popupProps): JSX.Element => {
     const itemCurrent = {
         id: id,
         name: 'Welcome!',
-        iconURL: '../src/assets/application_xp.jpg',
+        faClasses: 'fa-regular fa-window-maximize',
         type: miniAppType.popup,
     } as miniApp;
 
@@ -73,8 +72,15 @@ const PopUp = (props: popupProps): JSX.Element => {
 
     return (
         <div>
-            <div id={'APP' + elementId} className="popup" ref={popUpRef}>
-                <div className="popup-header" onMouseDown={handleMouseDown}>
+            <div
+                id={'APP' + elementId}
+                key={'APP' + elementId}
+                className="popup"
+                ref={popUpRef}
+                //onClick={increaseZIndex}
+                style={{ zIndex: '1' }}
+            >
+                <div className="window-titlebar" onMouseDown={handleMouseDown}>
                     {titleText}
                 </div>
 
@@ -84,7 +90,11 @@ const PopUp = (props: popupProps): JSX.Element => {
                     {buttonOptions &&
                         buttonOptions.map((buttonText) => {
                             return (
-                                <button className="popup-button button-3d" key={buttonText + elementId} onClick={handleClick}>
+                                <button
+                                    className="popup-button button-3d"
+                                    key={buttonText + elementId}
+                                    onClick={handleClick}
+                                >
                                     {buttonText}
                                 </button>
                             );
@@ -95,5 +105,5 @@ const PopUp = (props: popupProps): JSX.Element => {
     );
 };
 
-export { popupProps };
+export { PopupProps };
 export default PopUp;
